@@ -23,9 +23,8 @@ def func():
                 flipkartPage = uClient.read()  # reading the webpage
                 uClient.close()  # closing the connection to the web server
                 flipkart_html = bs(flipkartPage, "html.parser")  # parsing the webpage as HTML
-                bigboxes = flipkart_html.findAll("div", {"class": "bhgxx2 col-12-12"})  # seacrhing for appropriate tag to redirect to the product link
-                del bigboxes[0:3]  # the first 3 members of the list do not contain relevant information, hence deleting them.
-                box = bigboxes[0]  # taking the first iteration (for demo)
+                bigboxes = flipkart_html.findAll("div", {"class": "bhgxx2 col-12-12"})  # seacrhing for appropriate tag to redirect to the product line
+                box = bigboxes[0]  
                 productLink = "https://www.flipkart.com" + box.div.div.div.a['href']  # extracting the actual product link
                 prodRes = requests.get(productLink)  # getting the product page from server
                 prod_html = bs(prodRes.text, "html.parser")  # parsing the product page as HTML
